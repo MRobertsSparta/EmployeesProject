@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 public class EmployeeValidator {
 
-    public static void validateAll(ArrayList<Employee> employees) {
+    public static EmployeeRecords validateAll(ArrayList<Employee> employees) {
         TreeSet<Employee> employeeSet = new TreeSet<>(new Employee.EmployeeComparator());
         ArrayList<Employee> corruptions = new ArrayList<>();
         for (Employee employee: employees) {
@@ -16,6 +16,7 @@ public class EmployeeValidator {
             }
         }
         EmployeeRecords records = new EmployeeRecords(new ArrayList<>(employeeSet), corruptions);
+        return records;
     }
 
     public static boolean isValid(Employee employee) {
