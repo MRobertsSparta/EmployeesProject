@@ -1,18 +1,18 @@
 # Employee CSV Data Migration Project
 
-__Developed by Maxwell, William , Hamzah, Cheung and Riya__
+**Developed by Maxwell, William , Hamzah, Cheung and Riya**
 
 This project is developed as a team of 5, following agile methodologies, good programming practices in OOP, SOLID, design patterns, testing, and logging
 
 The project's functionality includes being able to read, validate corrupted files and write CSV Files to the database.
 
-__Built With__
+**Built With**
 
 * IntelliJ IDEA (Community Edition)
 * junit-jupiter:5.8.2
 * MySQL Server and WorkBench
 
-__Dependencies__
+**Dependencies**
 
 * junit.jupiter Version 5.9.0
 * mysql 8.0.30
@@ -32,26 +32,30 @@ __Dependencies__
 Run the project using IntelliJ Community Edition. 
 Make sure to install the dependencies and software inlcuded.
 
-__Installation__
+**Installation**
 
 Clone the repository below.
 > git clone https://github.com/MRobertsSparta/EmployeesProject.git
 
 
 ### Program Structure
-ValidateEmployee class which checks for corruptions in the data and adds them to a separate collection.
-DataToDatabase class which uploads all data to the database.
-UserInterface class which prints the results of reading the file.
-CSVReader class to read in the Employee.csv file
-Logging package is created which contains the Custom File Handler and the Custom Logger
+→ ValidateEmployee class which checks for corruptions in the data and adds them to a separate collection.<br>
+
+→ DataToDatabase class which uploads all data to the database.<br>
+
+→ UserInterface class which prints the results of reading the file.<br>
+
+→ CSVReader class to read in the Employee.csv file.<br>
+
+→ Logging package is created which contains the Custom File Handler and the Custom Logger.<br>
 These are used for logging throughout the project.
 
 ***
 ## Threads Results and Analysis
-__Results__
+**Results**
 
 
-__Analysis__
+**Analysis**
 
 
 ***
@@ -64,7 +68,7 @@ __Analysis__
 ***
 ## Testing 
 
-__JUnit Testing__
+**JUnit Testing**
 
 
-__Manual Testing__
+**Manual Testing**
