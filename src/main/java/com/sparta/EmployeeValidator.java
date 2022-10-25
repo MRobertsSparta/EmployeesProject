@@ -8,28 +8,33 @@ import java.util.TreeSet;
 public class EmployeeValidator {
 
     public static void validateAll(ArrayList<Employee> employees) {
-        TreeSet<Employee> set = new TreeSet<>(new Employee.EmployeeComparator());
+        TreeSet<Employee> employeeSet = new TreeSet<>(new Employee.EmployeeComparator());
         ArrayList<Employee> corruptions = new ArrayList<>();
         for (Employee employee: employees) {
-            if (!isValid(employee) || !set.add(employee)) {
+            if (!isValid(employee) || !employeeSet.add(employee)) {
                 corruptions.add(employee);
             }
         }
+        EmployeeRecords records = new EmployeeRecords(new ArrayList<>(employeeSet), corruptions);
     }
 
     public static boolean isValid(Employee employee) {
-        return (
-                validateTitle(employee.getTitle())
-                && validateName(employee.getFirstName())
-                && validateName(employee.getLastName())
-                && validateMiddleInitial(employee.getMiddleInitial())
-                && validateGender(employee.getGender())
-                && validateEmail(employee.getEmail())
-                && validateDate(employee.getDateOfBirth())
-                && validateDate(employee.getDateOfJoining())
-                && validateJoinedWhenOver18(employee.getDateOfBirth(), employee.getDateOfJoining())
-                && validateSalary(employee.getSalary())
-                );
+        try {
+            return (
+                    validateTitle(employee.getTitle())
+                            && validateName(employee.getFirstName())
+                            && validateName(employee.getLastName())
+                            && validateMiddleInitial(employee.getMiddleInitial())
+                            && validateGender(employee.getGender())
+                            && validateEmail(employee.getEmail())
+                            && validateDate(employee.getDateOfBirth())
+                            && validateDate(employee.getDateOfJoining())
+                            && validateJoinedWhenOver18(employee.getDateOfBirth(), employee.getDateOfJoining())
+                            && validateSalary(employee.getSalary())
+            );
+        } catch (NullPointerException ex) {
+            return false;
+        }
     }
 
     private static boolean validateTitle(String title) {
