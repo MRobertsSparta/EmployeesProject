@@ -1,4 +1,4 @@
-package com.sparta.logging;
+package com.sparta;
 
 import java.io.FileReader;
 import java.io.IOException;
