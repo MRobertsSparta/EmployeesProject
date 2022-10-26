@@ -1,19 +1,31 @@
 package com.sparta;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class Employee {
 
     private int id;
-    private String title; //Could be changed to Enum
+    private String title;
     private String firstName;
     private String lastName;
     private String middleInitial;
-    private char gender; //Could be changed to Enum
+    private char gender;
     private String email;
     private Date dateOfBirth;
     private Date dateOfJoining;
     private int salary;
+
+    public static class EmployeeComparator implements Comparator<Employee> {
+        @Override
+        public int compare(Employee o1, Employee o2) {
+            if (o1.email.equals(o2.email)) {
+                return 0;
+            }
+            return Integer.compare(o1.id, o2.id);
+        }
+    }
+
 
     public int getId() {
         return id;
