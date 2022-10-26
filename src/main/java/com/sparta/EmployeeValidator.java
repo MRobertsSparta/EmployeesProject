@@ -47,7 +47,7 @@ public class EmployeeValidator {
     }
 
     private static boolean validateMiddleInitial(String initial) {
-        return initial.matches("[A-Z]?");
+        return initial.matches("([A-Z]?|FALSE)");
     }
 
     private static boolean validateGender(char gender) {
