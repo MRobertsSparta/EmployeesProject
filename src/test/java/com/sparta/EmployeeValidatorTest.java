@@ -100,7 +100,7 @@ public class EmployeeValidatorTest {
     }
 
     public static String[] getAllPossibleMiddleInitials() {
-        return " A B C D E F G H I J K L M N O P Q R S T U V W X Y Z FALSE".split(" ");
+        return " A B C D E F G H I J K L M N O P Q R S T U V W X Y Z".split(" ");
     }
 
     @ParameterizedTest()
@@ -238,7 +238,8 @@ public class EmployeeValidatorTest {
         testEmployeeArrayList.add(testEmployeeDuplicate);
         EmployeeRecords records = EmployeeValidator.validateAll(testEmployeeArrayList);
 
-        Assertions.assertFalse(records.getCleanRecords().contains(testEmployeeDuplicate));
+
+        Assertions.assertEquals(1, records.getCleanRecords().size());
         Assertions.assertTrue(records.getCorruptRecords().contains(testEmployeeDuplicate));
     }
 }
