@@ -13,10 +13,8 @@ public class DataToDatabase {
     private static final String Update_Persons = "INSERT INTO employees (EmployeeID, namePrefix, firstName, middleInitial, lastName, gender, email, birthday,\n" +
             "joinDate, salary) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    public static void updatePersons(Employee employee)
-    {
-        try(PreparedStatement preparedStatement = connection.prepareStatement(Update_Persons))
-        {
+    public static void updatePersons(Employee employee) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Update_Persons)) {
             preparedStatement.setInt(1, employee.getId());
             preparedStatement.setString(2, employee.getTitle());
             preparedStatement.setString(3, employee.getFirstName());
@@ -35,16 +33,23 @@ public class DataToDatabase {
 //            else {
 //                System.out.println("Did not update");
 //            }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
+
+    public static void commit() {
+        try {
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     static{
         try{
             connection = DriverManager.getConnection(URL,"root", "root");
+            connection.setAutoCommit(false);
         }
         catch (SQLException e) {
             e.printStackTrace();
