@@ -16,16 +16,16 @@ public class Employee {
     private Date dateOfJoining;
     private int salary;
 
-    public static class EmployeeComparator implements Comparator<Employee> {
-        @Override
-        public int compare(Employee o1, Employee o2) {
-            if (o1.email.equals(o2.email)) {
-                return 0;
-            }
-            return Integer.compare(o1.id, o2.id);
-        }
+    @Override
+    public boolean equals(Object obj) {
+        Employee e = (Employee) obj;
+        return id == e.id || email.equals(e.email);
     }
 
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 
     public int getId() {
         return id;
