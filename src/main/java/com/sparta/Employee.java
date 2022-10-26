@@ -1,19 +1,31 @@
 package com.sparta;
 
+import java.util.Comparator;
 import java.util.Date;
 
 public class Employee {
 
     private int id;
-    private String title; //Could be changed to Enum
+    private String title;
     private String firstName;
     private String lastName;
     private String middleInitial;
-    private char gender; //Could be changed to Enum
+    private char gender;
     private String email;
     private Date dateOfBirth;
     private Date dateOfJoining;
     private int salary;
+
+    @Override
+    public boolean equals(Object obj) {
+        Employee e = (Employee) obj;
+        return id == e.id || email.equals(e.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 
     public int getId() {
         return id;
