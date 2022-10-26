@@ -10,7 +10,7 @@ public class DataToDatabase {
     private static final String URL= "jdbc:mysql://localhost:3306/employeedatabase?serverTimezone=GMT";
     //private Properties properties = new Properties();
     private static Connection connection = null;
-    private static final String Update_Persons = "INSERT INTO spartans (EmployeeID, namePrefix, firstName, middleInitial, lastName, gender, email, birthday,\n" +
+    private static final String Update_Persons = "INSERT INTO employees (EmployeeID, namePrefix, firstName, middleInitial, lastName, gender, email, birthday,\n" +
             "joinDate, salary) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     public static void updatePersons(Employee employee)
