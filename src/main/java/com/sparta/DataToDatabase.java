@@ -1,64 +1,55 @@
 package com.sparta;
 
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 public class DataToDatabase {
-    private String URL= "jdbc:mysql://localhost:3306/employeedatabase?serverTimezone=GMT";
-    private Properties properties = new Properties();
-    private Connection connection = null;
-    private static final String Update_Persons = "INSERT INTO spartans EmployeeID WHERE , namePrefix, firstName, middleInitial, lastName, gender, email, birthday, joinDate, salary)";
-    //EmployeeID, namePrefix, firstName, middleInitial, lastName, gender, email, birthday,
-    //joinDate, salary
-    //private static final String Update_Persons = "UPDATE persons SET lastName=? WHERE personId=? AND lastName!=?";
+    private static final String URL= "jdbc:mysql://localhost:3306/employeedatabase?serverTimezone=GMT";
+    //private Properties properties = new Properties();
+    private static Connection connection = null;
+    private static final String Update_Persons = "INSERT INTO spartans (EmployeeID, namePrefix, firstName, middleInitial, lastName, gender, email, birthday,\n" +
+            "joinDate, salary) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private Connection connectToDatabase()
+    public static void updatePersons(Employee employee)
     {
-        try{
-            properties.load(new FileReader("resources/login.properties"));
-            connection = DriverManager.getConnection(URL,properties.getProperty("username"), properties.getProperty("password"));
-        }
-        catch(IOException e)
+        try(PreparedStatement preparedStatement = connection.prepareStatement(Update_Persons))
         {
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        return connection;
-    }
-
-    public void updatePersons(int EmployeeID, String namePrefix)
-    {
-        try(PreparedStatement preparedStatement = connectToDatabase().prepareStatement(Update_Persons))
-        {
-            preparedStatement.setInt(1, EmployeeID);
-            preparedStatement.setString(2, namePrefix);
-            //preparedStatement.setString(3, firstName);
-            preparedStatement.setInt(1, EmployeeID);
-            preparedStatement.setInt(1, EmployeeID);
-            preparedStatement.setInt(1, EmployeeID);
-            preparedStatement.setInt(1, EmployeeID);
-            preparedStatement.setInt(1, EmployeeID);
-            preparedStatement.setInt(1, EmployeeID);
-            preparedStatement.setInt(1, EmployeeID);
-//            preparedStatement.setInt(2, EmployeeID);
-//            preparedStatement.setString(3, namePrefix);
+            preparedStatement.setInt(1, employee.getId());
+            preparedStatement.setString(2, employee.getTitle());
+            preparedStatement.setString(3, employee.getFirstName());
+            preparedStatement.setString(4, employee.getMiddleInitial());
+            preparedStatement.setString(5, employee.getLastName());
+            preparedStatement.setString(6, "" + employee.getGender());
+            preparedStatement.setString(7, employee.getEmail());
+            preparedStatement.setDate(8, new Date(employee.getDateOfBirth().getTime()));
+            preparedStatement.setDate(9, new Date(employee.getDateOfJoining().getTime()));
+            preparedStatement.setInt(10, employee.getSalary());
             int hasRun = preparedStatement.executeUpdate();
-            if(hasRun > 0)
-            {
-                System.out.println("Lastname of the person with personId " + EmployeeID + " has been updated to " + namePrefix);
-            }
-            else {
-                System.out.println("Did not update");
-            }
-        } catch (SQLException e) {
+//            if(hasRun > 0)
+//            {
+//                System.out.println("Sent to database");
+//            }
+//            else {
+//                System.out.println("Did not update");
+//            }
+        }
+        catch (SQLException e)
+        {
             throw new RuntimeException(e);
         }
 
     }
+    static{
+        try{
+            connection = DriverManager.getConnection(URL,"root", "root");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
