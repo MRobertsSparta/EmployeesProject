@@ -1,5 +1,6 @@
 package com.sparta.view;
 
+import com.sparta.model.EmployeeDAO;
 import com.sparta.model.employee.Employee;
 import com.sparta.model.employee.EmployeeRecords;
 
@@ -23,5 +24,11 @@ public class UserInterface {
         for (Employee employee: employees) {
             System.out.println("\t\t-" + employee.toString());
         }
+    }
+
+    public static void printEmployeeFromDatabase(int employeeID) {
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        Employee employee = employeeDAO.getEmployeeByID(employeeID);
+        System.out.println(employee.toString());
     }
 }

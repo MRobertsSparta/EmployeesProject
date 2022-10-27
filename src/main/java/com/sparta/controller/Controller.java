@@ -13,13 +13,20 @@ public class Controller {
     public static void init() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        ArrayList<Employee> employees = CSVReader.readFile("resources/EmployeeRecords.csv");
+
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        employeeDAO.openConnection();
+        employeeDAO.dropTable();
+        employeeDAO.createTable();
+
+        ArrayList<Employee> employees = CSVReader.readFile("resources/EmployeeRecordsLarge.csv");
         EmployeeRecords records = EmployeeValidator.validateAll(employees);
-        for (Employee employee: records.getCleanRecords()) {
-            EmployeeDAO.updatePersons(employee);
-        }
-        EmployeeDAO.commit();
+
+        employeeDAO.updateTable(records.getCleanRecords());
+        employeeDAO.commit();
+
         stopWatch.stop();
+        employeeDAO.closeConnection();
         UserInterface.print(records, stopWatch.getTime());
     }
 }
