@@ -1,7 +1,6 @@
-package com.sparta;
+package com.sparta.model.employee;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class EmployeeRecords {
 

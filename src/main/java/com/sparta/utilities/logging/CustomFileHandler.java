@@ -1,4 +1,4 @@
-package com.sparta.logging;
+package com.sparta.utilities.logging;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

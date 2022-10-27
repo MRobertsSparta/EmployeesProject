@@ -1,12 +1,10 @@
-package com.sparta;
+package com.sparta.model;
 
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import com.sparta.model.employee.Employee;
+
 import java.sql.*;
-import java.util.Properties;
 
-public class DataToDatabase {
+public class EmployeeDAO {
     private static final String URL= "jdbc:mysql://localhost:3306/employeedatabase?serverTimezone=GMT";
     //private Properties properties = new Properties();
     private static Connection connection = null;

@@ -1,6 +1,7 @@
-package com.sparta;
+package com.sparta.model;
 
-import com.sparta.logging.CustomLogger;
+import com.sparta.model.employee.Employee;
+import com.sparta.utilities.logging.CustomLogger;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

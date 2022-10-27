@@ -1,4 +1,4 @@
-package com.sparta.logging;
+package com.sparta.utilities.logging;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

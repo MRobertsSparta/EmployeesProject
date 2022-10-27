@@ -1,11 +1,12 @@
-package com.sparta;
+package com.sparta.model;
 
-import com.sparta.logging.CustomLogger;
+import com.sparta.model.employee.Employee;
+import com.sparta.model.employee.EmployeeRecords;
+import com.sparta.utilities.logging.CustomLogger;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 

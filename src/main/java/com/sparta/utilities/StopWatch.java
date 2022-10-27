@@ -1,4 +1,4 @@
-package com.sparta;
+package com.sparta.utilities;
 
 public class StopWatch {
 

@@ -1,7 +1,7 @@
 package com.sparta;
 
-import com.sparta.CSVReader;
-import com.sparta.Employee;
+import com.sparta.model.CSVReader;
+import com.sparta.model.employee.Employee;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;

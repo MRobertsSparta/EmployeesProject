@@ -1,4 +1,4 @@
-package com.sparta;
+package com.sparta.model.employee;
 
 import java.util.Comparator;
 import java.util.Date;
