@@ -1,3 +1,5 @@
+package com.sparta;
+
 import com.sparta.CSVReader;
 import com.sparta.Employee;
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +17,7 @@ public class CSVReaderTest {
 
     @BeforeAll
     public static void setup() {
-        employeeList = CSVReader.readFile("C:\\Users\\hamza\\Documents\\Sparta\\Projects\\GroupProjectWeek4\\EmployeeRecords.csv");
+        employeeList = CSVReader.readFile("resources/EmployeeRecords.csv");
     }
 
     @Test

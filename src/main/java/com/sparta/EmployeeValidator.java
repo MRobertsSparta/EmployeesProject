@@ -4,6 +4,7 @@ import com.sparta.logging.CustomLogger;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -18,14 +19,25 @@ public class EmployeeValidator {
     private static final Pattern EMAIL_REGEX = Pattern.compile(".+@.+\\..+");
 
     public static EmployeeRecords validateAll(ArrayList<Employee> employees) {
-        HashSet<Employee> employeeSet = new HashSet<>();
-        ArrayList<Employee> corruptions = new ArrayList<>();
+        ArrayList<Employee> clean = new ArrayList<>();
+        ArrayList<Employee> duplicates = new ArrayList<>();
+        ArrayList<Employee> invalid = new ArrayList<>();
+
+        final Object PRESENT = new Object();
+        HashMap<Integer, Object> idMap = new HashMap<>();
+        HashMap<String, Object> emailMap = new HashMap<>();
+
         for (Employee employee : employees) {
-            if (!isValid(employee) || !employeeSet.add(employee)) {
-                corruptions.add(employee);
+            if (!isValid(employee)) {
+                invalid.add(employee);
+            } else if (idMap.put(employee.getId(), PRESENT) != null
+                    || emailMap.put(employee.getEmail(), PRESENT) != null) {
+                duplicates.add(employee);
+            } else {
+                clean.add(employee);
             }
         }
-        EmployeeRecords records = new EmployeeRecords(new ArrayList<>(employeeSet), corruptions);
+        EmployeeRecords records = new EmployeeRecords(clean, invalid, duplicates);
         return records;
     }
 

@@ -16,17 +16,6 @@ public class Employee {
     private Date dateOfJoining;
     private int salary;
 
-    @Override
-    public boolean equals(Object obj) {
-        Employee e = (Employee) obj;
-        return id == e.id || email.equals(e.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
-    }
-
     public int getId() {
         return id;
     }

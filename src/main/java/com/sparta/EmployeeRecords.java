@@ -6,18 +6,24 @@ import java.util.Arrays;
 public class EmployeeRecords {
 
     private ArrayList<Employee> cleanRecords;
-    private ArrayList<Employee> corruptRecords;
+    private ArrayList<Employee> invalidRecords;
+    private ArrayList<Employee> duplicateRecords;
 
-    public EmployeeRecords(ArrayList<Employee> cleanRecords, ArrayList<Employee> corruptRecords) {
+    public EmployeeRecords(ArrayList<Employee> cleanRecords, ArrayList<Employee> invalidRecords, ArrayList<Employee> duplicateRecords) {
         this.cleanRecords = cleanRecords;
-        this.corruptRecords = corruptRecords;
+        this.invalidRecords = invalidRecords;
+        this.duplicateRecords = duplicateRecords;
     }
 
     public ArrayList<Employee> getCleanRecords() {
         return cleanRecords;
     }
 
-    public ArrayList<Employee> getCorruptRecords() {
-        return corruptRecords;
+    public ArrayList<Employee> getInvalidRecords() {
+        return invalidRecords;
+    }
+
+    public ArrayList<Employee> getDuplicateRecords() {
+        return duplicateRecords;
     }
 }

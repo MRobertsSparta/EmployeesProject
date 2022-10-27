@@ -224,7 +224,7 @@ public class EmployeeValidatorTest {
         testEmployeeArrayList.add(testEmployee);
         EmployeeRecords records = EmployeeValidator.validateAll(testEmployeeArrayList);
 
-        Assertions.assertTrue(records.getCorruptRecords().contains(testEmployee));
+        Assertions.assertTrue(records.getInvalidRecords().contains(testEmployee));
     }
 
     @Test
@@ -238,8 +238,7 @@ public class EmployeeValidatorTest {
         testEmployeeArrayList.add(testEmployeeDuplicate);
         EmployeeRecords records = EmployeeValidator.validateAll(testEmployeeArrayList);
 
-
         Assertions.assertEquals(1, records.getCleanRecords().size());
-        Assertions.assertTrue(records.getCorruptRecords().contains(testEmployeeDuplicate));
+        Assertions.assertTrue(records.getDuplicateRecords().contains(testEmployeeDuplicate));
     }
 }
