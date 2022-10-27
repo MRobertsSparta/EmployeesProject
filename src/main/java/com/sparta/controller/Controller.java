@@ -17,11 +17,12 @@ public class Controller {
         employeeDAO.openConnection();
         employeeDAO.dropTable();
         employeeDAO.createTable();
-        ArrayList<Employee> employees = CSVReader.readFile("resources/EmployeeRecords.csv");
+        ArrayList<Employee> employees = CSVReader.readFile("resources/EmployeeRecordsLarge.csv");
         EmployeeRecords records = EmployeeValidator.validateAll(employees);
-        for (Employee employee: records.getCleanRecords()) {
-            employeeDAO.updateTable(employee);
-        }
+        employeeDAO.updateTable(records.getCleanRecords());
+//        for (Employee employee: records.getCleanRecords()) {
+//            employeeDAO.updateTable(employee);
+//        }
         employeeDAO.commit();
         stopWatch.stop();
         employeeDAO.closeConnection();

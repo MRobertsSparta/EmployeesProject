@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class EmployeeDAO {
@@ -29,30 +30,27 @@ public class EmployeeDAO {
         }
     }
 
-    public void updateTable(Employee employee) {
+    public void updateTable(ArrayList<Employee> employees) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Queries.UPDATE_TABLE)) {
-            preparedStatement.setInt(1, employee.getId());
-            preparedStatement.setString(2, employee.getTitle());
-            preparedStatement.setString(3, employee.getFirstName());
-            preparedStatement.setString(4, employee.getMiddleInitial());
-            preparedStatement.setString(5, employee.getLastName());
-            preparedStatement.setString(6, "" + employee.getGender());
-            preparedStatement.setString(7, employee.getEmail());
-            preparedStatement.setDate(8, new Date(employee.getDateOfBirth().getTime()));
-            preparedStatement.setDate(9, new Date(employee.getDateOfJoining().getTime()));
-            preparedStatement.setInt(10, employee.getSalary());
-            int hasRun = preparedStatement.executeUpdate();
-//            if(hasRun > 0)
-//            {
-//                System.out.println("Sent to database");
-//            }
-//            else {
-//                System.out.println("Did not update");
-//            }
+            for(Employee employee:employees) {
+                preparedStatement.setInt(1, employee.getId());
+                preparedStatement.setString(2, employee.getTitle());
+                preparedStatement.setString(3, employee.getFirstName());
+                preparedStatement.setString(4, employee.getMiddleInitial());
+                preparedStatement.setString(5, employee.getLastName());
+                preparedStatement.setString(6, "" + employee.getGender());
+                preparedStatement.setString(7, employee.getEmail());
+                preparedStatement.setDate(8, new Date(employee.getDateOfBirth().getTime()));
+                preparedStatement.setDate(9, new Date(employee.getDateOfJoining().getTime()));
+                preparedStatement.setInt(10, employee.getSalary());
+                preparedStatement.addBatch();
+            }
+            preparedStatement.executeBatch();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 
     public void commit() {
         try {
