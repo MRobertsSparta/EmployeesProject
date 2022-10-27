@@ -20,11 +20,11 @@ public class CSVReader {
             String line;
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
             line = bufferedReader.readLine();
-            while((line=bufferedReader.readLine())!=null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 String[] employeeInfo = line.split(",");
                 Employee employee = new Employee();
                 String dateFormat = "dd/MM/yyyy";
-                employee.setEmployeeDetails(employeeInfo,dateFormat);
+                employee.setEmployeeDetails(employeeInfo, dateFormat);
                 employeeList.add(employee);
             }
         } catch (FileNotFoundException e) {
@@ -34,9 +34,4 @@ public class CSVReader {
         }
         return employeeList;
     }
-
-
-
-
-
 }

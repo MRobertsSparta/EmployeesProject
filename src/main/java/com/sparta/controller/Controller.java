@@ -13,23 +13,20 @@ public class Controller {
     public static void init() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
+
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.openConnection();
         employeeDAO.dropTable();
         employeeDAO.createTable();
+
         ArrayList<Employee> employees = CSVReader.readFile("resources/EmployeeRecordsLarge.csv");
         EmployeeRecords records = EmployeeValidator.validateAll(employees);
+
         employeeDAO.updateTable(records.getCleanRecords());
-//        for (Employee employee: records.getCleanRecords()) {
-//            employeeDAO.updateTable(employee);
-//        }
         employeeDAO.commit();
+
         stopWatch.stop();
         employeeDAO.closeConnection();
         UserInterface.print(records, stopWatch.getTime());
-    }
-
-    private static void printEmployeeFromDatabaseByID(int employeeID) {
-        UserInterface.printEmployeeFromDatabase(employeeID);
     }
 }
