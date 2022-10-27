@@ -1,5 +1,7 @@
 package com.sparta.model.employee;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -110,5 +112,29 @@ public class Employee {
                 ", dateOfJoining=" + dateOfJoining +
                 ", salary=" + salary +
                 '}';
+    }
+
+    public void setEmployeeDetails(String[] employeeInfo, String dateFormat) {
+        setId(Integer.parseInt(employeeInfo[0]));
+        setTitle(employeeInfo[1]);
+        setFirstName(employeeInfo[2]);
+        setMiddleInitial(employeeInfo[3].replace("FALSE", ""));
+        setLastName(employeeInfo[4]);
+        setGender(employeeInfo[5].charAt(0));
+        setEmail(employeeInfo[6]);
+        setDateOfBirth(parseDate(employeeInfo[7], dateFormat));
+        setDateOfJoining(parseDate(employeeInfo[8], dateFormat));
+        setSalary(Integer.parseInt(employeeInfo[9]));
+    }
+
+    private Date parseDate(String dateString, String dateFormat){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }
