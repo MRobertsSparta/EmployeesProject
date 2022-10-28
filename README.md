@@ -31,13 +31,13 @@ This project is developed as a team of 5, following agile methodologies, good pr
 
 The project's functionality includes being able to read, validate corrupted files and write CSV Files to the database.
 
-**Built With**
+### Built With
 
 * IntelliJ IDEA (Community Edition)
 * junit-jupiter:5.8.2
 * MySQL Server and WorkBench
 
-**Dependencies**
+### Dependencies
 
 * junit.jupiter Version 5.9.0
 * mysql 8.0.30
@@ -100,13 +100,13 @@ These are used for logging throughout the project.
 → StopWatch class which includes a start and stop method that start and stops the timer.<br>
 
 ## Threads Results and Analysis
-**Results**
+### Results
 
 Below are the results produced when trying out multiple threads in increasing the performance of the program.
 
 ![threading performance](https://github.com/MRobertsSparta/EmployeesProject/blob/41ed137d5c2bb108cddab78e6d3ff892370e8ba7/programscreenshots)
 
-**Analysis**
+### Analysis
 
 We coded a simple algorithm that will run the program 10 times for each thread.<br>
 This smaller program then increases the number of threads until it reached 64, so we could determine our most efficient number for our project.<br>
@@ -120,7 +120,7 @@ We think this was due to streams not being efficient with large amounts of data.
 ***
 ## Testing
 
-**JUnit Testing**
+### JUnit Testing
 
 JUnit testing allowed us to test the classes in the model of the project such as using parameterized tests to test for multiple values without having to do any long manual testing.<br>
 
@@ -131,7 +131,7 @@ Errors can be found by asserting results and comparing it to the actual result.<
 Looking at our test coverage, the average % of code coverage is low due to code being unsuitable for unit testing.<br>
 The classes which use it the most are within the model package of our project which have good testing coverage.<br>
 
-**Manual Testing**
+### Manual Testing
 
 The parts of the program which were not suitable for unit testing were tested manually.<br>
 
