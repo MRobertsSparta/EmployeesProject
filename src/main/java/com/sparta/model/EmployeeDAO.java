@@ -106,4 +106,15 @@ public class EmployeeDAO {
         return employee;
     }
 
+    public int getNumberOfRowsInTable() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Queries.COUNT_ROWS)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

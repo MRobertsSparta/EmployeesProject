@@ -36,7 +36,7 @@ public class Controller {
         UserInterface.print(records, stopWatch.getTime());
     }
 
-    public static void initMultiThread(int numberOfThreads) {
+    public static long initMultiThread(int numberOfThreads) {
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.openConnection();
         employeeDAO.dropTable();
@@ -49,11 +49,11 @@ public class Controller {
         ArrayList<Employee> employees = CSVReader.readFile("resources/EmployeeRecordsLarge.csv");
         EmployeeRecords records = EmployeeValidator.validateAll(employees);
 
-        int employeesPerThread = records.getCleanRecords().size() / numberOfThreads;
+        float employeesPerThread = records.getCleanRecords().size() / (float) numberOfThreads;
         DAOThread[] threads = new DAOThread[numberOfThreads];
 
         for (int i = 0; i < numberOfThreads; i++) {
-            threads[i] = new DAOThread(records.getCleanRecords(), employeesPerThread * i, employeesPerThread * (i + 1));
+            threads[i] = new DAOThread(records.getCleanRecords(), (int)(employeesPerThread * i), (int)(employeesPerThread * (i + 1)));
             threads[i].start();
         }
 
@@ -67,5 +67,6 @@ public class Controller {
 
         stopWatch.stop();
         UserInterface.print(records, stopWatch.getTime());
+        return stopWatch.getTime();
     }
 }

@@ -20,4 +20,6 @@ public interface Queries {
             ");";
 
     String SELECT_EMPLOYEE = "SELECT * FROM employees WHERE employeeId = ?";
+
+    String COUNT_ROWS = "SELECT COUNT(*) FROM employees";
 }
