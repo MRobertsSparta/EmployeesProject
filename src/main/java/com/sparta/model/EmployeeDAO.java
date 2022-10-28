@@ -78,11 +78,7 @@ public class EmployeeDAO {
             connection = DriverManager.getConnection(URL, properties.getProperty("username"), properties.getProperty("password"));
             connection.setAutoCommit(false);
             logger.log(Level.INFO, "Create connection with the database");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
