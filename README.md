@@ -99,18 +99,21 @@ These are used for logging throughout the project.
 
 → StopWatch class which includes a start and stop method that start and stops the timer.<br>
 
+→ MultiThreadingOptimiser class is the mini program made to find the optimal thread count, which then prints the results to a csv file<br>
+
 ## Threads Results and Analysis
 ### Results
 
-Below are the results produced when trying out multiple threads in increasing the performance of the program.
+Below are the results produced by the MultiThreadingOptimiser class which tried running multiple threads to find out the sweet spot of number of threads to be used to get the best performance speed of the program. <br>
+
 
 ![threading performance](https://github.com/MRobertsSparta/EmployeesProject/blob/dev/programscreenshots/threadperformance.png)
 
 ### Analysis
 
-We coded a simple algorithm that will run the program 10 times for each thread.<br>
-This smaller program then increases the number of threads until it reached 64, so we could determine our most efficient number for our project.<br>
-We found that our fastest number of threads was 16, which gave us our best time so far of 1.06 seconds.<br>
+MultiThreadingOptimiser class ran the program 10 times for each thread.<br>
+It then increased the number of threads until it reached 64, so we could determine our most efficient number for our project.<br>
+We found that our fastest time was reached using 16 threads, which gave us our best time so far of 1.06 seconds.<br>
 
 ***
 ## Use of Functional Programming
