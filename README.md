@@ -104,7 +104,7 @@ These are used for logging throughout the project.
 
 Below are the results produced when trying out multiple threads in increasing the performance of the program.
 
-![threading performance](https://github.com/MRobertsSparta/EmployeesProject/blob/41ed137d5c2bb108cddab78e6d3ff892370e8ba7/programscreenshots)
+![threading performance](https://github.com/MRobertsSparta/EmployeesProject/blob/41ed137d5c2bb108cddab78e6d3ff892370e8ba7/programscreenshots/threadperformance.png)
 
 ### Analysis
 
