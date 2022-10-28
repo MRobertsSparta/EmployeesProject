@@ -4,6 +4,7 @@ import com.sparta.model.*;
 import com.sparta.model.employee.Employee;
 import com.sparta.model.employee.EmployeeRecords;
 import com.sparta.utilities.StopWatch;
+import com.sparta.utilities.logging.CustomLogger;
 import com.sparta.view.UserInterface;
 
 import java.util.ArrayList;
@@ -12,10 +13,15 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller {
 
+    private static final Logger logger = CustomLogger.getLogger();
+
     public static void init() {
+        logger.log(Level.INFO, "CSV Data Migration application started.");
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.openConnection();
         employeeDAO.dropTable();
@@ -23,7 +29,6 @@ public class Controller {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-
         ArrayList<Employee> employees = CSVReader.readFile("resources/EmployeeRecordsLarge.csv");
 
         EmployeeRecords records = EmployeeValidator.validateAll(employees);
@@ -33,10 +38,13 @@ public class Controller {
         employeeDAO.closeConnection();
 
         stopWatch.stop();
+        logger.log(Level.INFO, "Stopwatch stopped with total time of: " + stopWatch.getTime());
         UserInterface.print(records, stopWatch.getTime());
+        logger.log(Level.INFO, "CSV Data Migration process finished.");
     }
 
     public static long initMultiThread(int numberOfThreads) {
+        logger.log(Level.INFO, "CSV Data Migration multi-threaded application started.");
         EmployeeDAO employeeDAO = new EmployeeDAO();
         employeeDAO.openConnection();
         employeeDAO.dropTable();
@@ -45,9 +53,13 @@ public class Controller {
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-
         ArrayList<Employee> employees = CSVReader.readFile("resources/EmployeeRecordsLarge.csv");
+        logger.log(Level.INFO, "Populated ArrayList with " + employees.size() + " Employee objects");
         EmployeeRecords records = EmployeeValidator.validateAll(employees);
+
+        logger.log(Level.INFO, "Created Employee Records object with " + records.getCleanRecords().size() +
+                " clean records." + records.getInvalidRecords() + " invalid records and " + records.getDuplicateRecords() + " duplicate records.");
+
 
         float employeesPerThread = records.getCleanRecords().size() / (float) numberOfThreads;
         DAOThread[] threads = new DAOThread[numberOfThreads];
@@ -66,6 +78,7 @@ public class Controller {
         }
 
         stopWatch.stop();
+        logger.log(Level.INFO, "Stopwatch stopped with total time of: " + stopWatch.getTime());
         UserInterface.print(records, stopWatch.getTime());
         return stopWatch.getTime();
     }

@@ -7,12 +7,13 @@ import com.sparta.utilities.logging.CustomLogger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public class EmployeeValidator {
 
-    private final Logger logger = CustomLogger.getLogger();
+    private static final Logger logger = CustomLogger.getLogger();
     private static final long EIGHTEEN_YEARS = 568025136000l;  //18 years = 568025136000 milliseconds
     private static final Pattern TITLE_REGEX = Pattern.compile("(M(rs?|s)|Drs?|Prof|Hon)\\.");
     private static final Pattern NAME_REGEX = Pattern.compile("[A-Za-z]+");
@@ -20,6 +21,7 @@ public class EmployeeValidator {
     private static final Pattern EMAIL_REGEX = Pattern.compile(".+@.+\\..+");
 
     public static EmployeeRecords validateAll(ArrayList<Employee> employees) {
+        logger.log(Level.INFO, "started validateAll method");
         ArrayList<Employee> clean = new ArrayList<>();
         ArrayList<Employee> duplicates = new ArrayList<>();
         ArrayList<Employee> invalid = new ArrayList<>();
@@ -31,14 +33,18 @@ public class EmployeeValidator {
         for (Employee employee : employees) {
             if (!isValid(employee)) {
                 invalid.add(employee);
+                logger.log(Level.FINER, "Added duplicate object to duplicates ArrayList");
             } else if (idMap.put(employee.getId(), PRESENT) != null
                     || emailMap.put(employee.getEmail(), PRESENT) != null) {
                 duplicates.add(employee);
+                logger.log(Level.FINER, "Added duplicate object to duplicates ArrayList");
             } else {
                 clean.add(employee);
+                logger.log(Level.FINER, "Added valid object to clean ArrayList");
             }
         }
         EmployeeRecords records = new EmployeeRecords(clean, invalid, duplicates);
+        logger.log(Level.INFO, "Create new Employee Records object with all the lists of valid, invalid and duplicate data.");
         return records;
     }
 

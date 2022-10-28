@@ -13,9 +13,10 @@ public class CustomFileHandler {
     static {
         try {
             LocalDateTime time = LocalDateTime.now();
-            String url = "src/main/resources/sort_manager_log.log";
+            String url = "src/main/resources/log.log";
             fileHandler = new FileHandler(url, true);
             fileHandler.setLevel(Level.ALL);
+            fileHandler.setFormatter(new CustomFormatter());
         } catch (IOException e) {
             e.printStackTrace();
         }

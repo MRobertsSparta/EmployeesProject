@@ -21,6 +21,7 @@ public class UserInterface {
     }
 
     private static void printEmployees(ArrayList<Employee> employees) {
+
         for (Employee employee: employees) {
             System.out.println("\t\t-" + employee.toString());
         }
