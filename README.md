@@ -104,7 +104,7 @@ These are used for logging throughout the project.
 
 Below are the results produced when trying out multiple threads in increasing the performance of the program.
 
-![threading performance](https://github.com/MRobertsSparta/EmployeesProject/blob/41ed137d5c2bb108cddab78e6d3ff892370e8ba7/programscreenshots/threadperformance.png)
+![threading performance](https://github.com/MRobertsSparta/EmployeesProject/blob/dev/programscreenshots/threadperformance.png)
 
 ### Analysis
 
@@ -135,6 +135,7 @@ The classes which use it the most are within the model package of our project wh
 
 The parts of the program which were not suitable for unit testing were tested manually.<br>
 
+***
 ## Future Development
 
 For future improvements we would like to implement a user-friendly UI to view records in the database.<br>
